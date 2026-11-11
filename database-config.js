@@ -1,22 +1,36 @@
 
 require("dotenv").config();
 
-const DatabaseConfig = {
-    host: process.env.DB_HOST || "localhost",
-    port: Number(process.env.DB_PORT || 5432),
-    database: process.env.DB_NAME || "minehost",
-    user: process.env.DB_USER || "minehost_user",
+const { Pool } = require("pg");
+const DatabaseConfig = require("./database-config");
 
-    // A senha deve ficar somente no arquivo .env.
-    password: process.env.DB_PASSWORD,
+const pool = new Pool({
+    ...DatabaseConfig
+});
 
-    ssl: process.env.DB_SSL === "true",
+async function consultar(sql, parametros = []) {
+    return pool.query(sql, parametros);
+}
 
-    pool: {
-        max: 10,
-        min: 0,
-        idleTimeoutMillis: 30000
+async function conectar() {
+    const client = await pool.connect();
+
+    try {
+        await client.query("SELECT 1");
+        console.log("MineHost: PostgreSQL conectado.");
+        return true;
+    } finally {
+        client.release();
     }
-};
+}
 
-module.exports = DatabaseConfig;
+async function encerrar() {
+    await pool.end();
+}
+
+module.exports = {
+    pool,
+    consultar,
+    conectar,
+    encerrar
+};
