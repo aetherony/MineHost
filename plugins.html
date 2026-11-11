@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080e1b">
+<title>Plugins e Mods - MineHost</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    background:#080e1b;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+header{
+    background:#111e31;
+    padding:20px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #233752;
+}
+
+.logo{
+    color:#299bff;
+    font-size:25px;
+    font-weight:bold;
+}
+
+header a{
+    color:#b8c5d8;
+    text-decoration:none;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:35px 20px;
+}
+
+.subtitle{
+    color:#91a3bb;
+    margin:12px 0 30px;
+}
+
+.tabs{
+    display:flex;
+    gap:12px;
+    margin-bottom:22px;
+    flex-wrap:wrap;
+}
+
+.tab{
+    padding:12px 20px;
+    background:#111e31;
+    color:white;
+    border:1px solid #30445e;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.tab.active{
+    background:#168cf1;
+    border-color:#168cf1;
+}
+
+.search{
+    width:100%;
+    padding:15px;
+    background:#111e31;
+    border:1px solid #30445e;
+    border-radius:9px;
+    color:white;
+    margin-bottom:25px;
+    outline:none;
+}
+
+.search:focus{
+    border-color:#299bff;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:#111e31;
+    border:1px solid #233752;
+    border-radius:13px;
+    padding:22px;
+    transition:.2s;
+}
+
+.card:hover{
+    border-color:#299bff;
+    transform:translateY(-4px);
+}
+
+.icon{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#91a3bb;
+    font-size:14px;
+    line-height:1.5;
+    min-height:42px;
+}
+
+.category{
+    display:inline-block;
+    margin:14px 0;
+    padding:6px 10px;
+    border-radius:20px;
+    background:#183453;
+    color:#69baff;
+    font-size:12px;
+}
+
+.install{
+    display:block;
+    width:100%;
+    padding:12px;
+    background:#168cf1;
+    border:0;
+    border-radius:8px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.install:hover{
+    background:#0872d0;
+}
+
+.empty{
+    color:#91a3bb;
+    text-align:center;
+    padding:35px;
+    grid-column:1/-1;
+}
+
+footer{
+    text-align:center;
+    color:#71839b;
+    padding:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">MineHost.</div>
+    <a href="dashboard.html">← Meu painel</a>
+</header>
+
+<main class="container">
+
+    <h1>Plugins e Mods</h1>
+
+    <p class="subtitle">
+        Personalize seu servidor Minecraft.
+    </p>
+
+    <div class="tabs">
+        <button class="tab active" onclick="changeTab('plugins',this)">
+            Plugins
+        </button>
+
+        <button class="tab" onclick="changeTab('mods',this)">
+            Mods
+        </button>
+    </div>
+
+    <input
+        type="search"
+        id="search"
+        class="search"
+        placeholder="🔍 Pesquisar plugins ou mods..."
+        oninput="renderItems()"
+    >
+
+    <div class="grid" id="items"></div>
+
+</main>
+
+<footer>
+    © 2026 MineHost. Todos os direitos reservados.
+</footer>
+
+<script>
+
+const data = {
+    plugins: [
+        {
+            name:"EssentialsX",
+            icon:"⚙️",
+            description:"Ferramentas e comandos essenciais para servidores.",
+            category:"Administração"
+        },
+        {
+            name:"WorldEdit",
+            icon:"🌍",
+            description:"Edite construções e terrenos no seu mundo.",
+            category:"Construção"
+        },
+        {
+            name:"LuckPerms",
+            icon:"🛡️",
+            description:"Gerencie grupos e permissões dos jogadores.",
+            category:"Permissões"
+        },
+        {
+            name:"WorldGuard",
+            icon:"🔒",
+            description:"Proteja regiões e construções do servidor.",
+            category:"Proteção"
+        },
+        {
+            name:"Vault",
+            icon:"💰",
+            description:"Integração de economia para outros plugins.",
+            category:"Economia"
+        }
+    ],
+
+    mods: [
+        {
+            name:"JEI",
+            icon:"📖",
+            description:"Consulte receitas e itens do Minecraft.",
+            category:"Utilidade"
+        },
+        {
+            name:"Biomes O' Plenty",
+            icon:"🌳",
+            description:"Adicione novos biomas ao mundo.",
+            category:"Exploração"
+        },
+        {
+            name:"Create",
+            icon:"⚙️",
+            description:"Construa máquinas e sistemas mecânicos.",
+            category:"Tecnologia"
+        },
+        {
+            name:"Waystones",
+            icon:"🗺️",
+            description:"Adicione pontos de teletransporte.",
+            category:"Exploração"
+        }
+    ]
+};
+
+let currentTab = "plugins";
+
+function changeTab(tab,button){
+    currentTab = tab;
+
+    document.querySelectorAll(".tab").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    renderItems();
+}
+
+function renderItems(){
+    const search = document.getElementById("search").value.toLowerCase();
+
+    const filtered = data[currentTab].filter(item=>
+        item.name.toLowerCase().includes(search) ||
+        item.description.toLowerCase().includes(search)
+    );
+
+    const container = document.getElementById("items");
+
+    if(filtered.length === 0){
+        container.innerHTML = '<div class="empty">Nenhum resultado encontrado.</div>';
+        return;
+    }
+
+    container.innerHTML = filtered.map(item=>`
+        <div class="card">
+            <div class="icon">${item.icon}</div>
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+            <span class="category">${item.category}</span>
+            <button class="install"
+                onclick="installItem('${item.name}')">
+                + Instalar
+            </button>
+        </div>
+    `).join("");
+}
+
+function installItem(name){
+    alert(name + ": a instalação real será conectada ao servidor futuramente!");
+}
+
+renderItems();
+
+</script>
+
+</body>
+  </html>
+  
