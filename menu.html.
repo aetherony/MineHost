@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu | MineHost</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Arial,sans-serif;
+background:#080f1e;
+color:white;
+padding:25px;
+}
+header{
+text-align:center;
+padding:30px 10px;
+}
+header h1{color:#3b82f6;font-size:35px}
+header p{color:#94a3b8;margin-top:10px}
+h2{margin:25px 0 15px;color:#60a5fa}
+.container{
+max-width:950px;
+margin:auto;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+gap:14px;
+}
+a{
+display:block;
+text-decoration:none;
+color:white;
+background:#111d32;
+border:1px solid #263957;
+padding:18px;
+border-radius:12px;
+transition:.2s;
+}
+a:hover{
+background:#1d3557;
+border-color:#3b82f6;
+transform:translateY(-3px);
+}
+a strong{display:block;margin-bottom:7px}
+a span{font-size:13px;color:#94a3b8}
+footer{
+text-align:center;
+color:#64748b;
+margin-top:35px;
+font-size:13px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>MineHost</h1>
+<p>Central de navegação da plataforma</p>
+</header>
+
+<h2>Principal</h2>
+<div class="grid">
+<a href="index.html"><strong>Início</strong><span>Página inicial</span></a>
+<a href="dashboard.html"><strong>Painel</strong><span>Visão geral</span></a>
+<a href="servers.html"><strong>Servidores</strong><span>Gerenciar servidores</span></a>
+<a href="profile.html"><strong>Perfil</strong><span>Informações da conta</span></a>
+</div>
+
+<h2>Conta</h2>
+<div class="grid">
+<a href="login.html"><strong>Entrar</strong><span>Acessar conta</span></a>
+<a href="register.html"><strong>Cadastrar</strong><span>Criar conta</span></a>
+<a href="settings.html"><strong>Configurações</strong><span>Preferências</span></a>
+<a href="notifications.html"><strong>Notificações</strong><span>Avisos da plataforma</span></a>
+</div>
+
+<h2>Recursos</h2>
+<div class="grid">
+<a href="plugins.html"><strong>Plugins</strong><span>Plugins e mods</span></a>
+<a href="downloads.html"><strong>Downloads</strong><span>Arquivos disponíveis</span></a>
+<a href="server-info.html"><strong>Tipos de servidor</strong><span>Vanilla, Paper e Spigot</span></a>
+<a href="billing.html"><strong>Planos</strong><span>Free, Pro e Premium</span></a>
+<a href="logs.html"><strong>Histórico</strong><span>Atividades de demonstração</span></a>
+<a href="api.html"><strong>API</strong><span>Documentação planejada</span></a>
+</div>
+
+<h2>Ajuda e informações</h2>
+<div class="grid">
+<a href="help.html"><strong>Central de ajuda</strong><span>Suporte</span></a>
+<a href="support.html"><strong>Suporte</strong><span>Fale conosco</span></a>
+<a href="faq.html"><strong>Perguntas frequentes</strong><span>Dúvidas comuns</span></a>
+<a href="feedback.html"><strong>Feedback</strong><span>Envie sugestões</span></a>
+<a href="about.html"><strong>Sobre</strong><span>Conheça o MineHost</span></a>
+<a href="team.html"><strong>Equipe</strong><span>Equipe planejada</span></a>
+<a href="partners.html"><strong>Parceiros</strong><span>Parcerias planejadas</span></a>
+</div>
+
+<h2>Outras páginas</h2>
+<div class="grid">
+<a href="news.html"><strong>Novidades</strong><span>Notícias de demonstração</span></a>
+<a href="changelog.html"><strong>Atualizações</strong><span>Histórico de versões</span></a>
+<a href="status.html"><strong>Status</strong><span>Status demonstrativo</span></a>
+<a href="security.html"><strong>Segurança</strong><span>Proteções planejadas</span></a>
+<a href="rules.html"><strong>Regras</strong><span>Regras da plataforma</span></a>
+<a href="terms.html"><strong>Termos</strong><span>Termos provisórios</span></a>
+<a href="privacy.html"><strong>Privacidade</strong><span>Política provisória</span></a>
+<a href="admin.html"><strong>Administração</strong><span>Painel demonstrativo</span></a>
+<a href="404.html"><strong>Erro 404</strong><span>Página não encontrada</span></a>
+<a href="maintenance.html"><strong>Manutenção</strong><span>Página de manutenção</span></a>
+</div>
+
+<footer>
+MineHost © 2026 — Projeto em desenvolvimento
+</footer>
+</div>
+</body>
+</html>
