@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MineHost - Central de Ajuda</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080f1d;
+    color: white;
+}
+
+header {
+    background: #101d33;
+    padding: 22px;
+    border-bottom: 1px solid #233b5e;
+}
+
+header h1 {
+    color: #3995ff;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+.intro {
+    color: #b7c5d8;
+    line-height: 1.7;
+    margin: 12px 0 25px;
+}
+
+.help-card {
+    background: #14243b;
+    border: 1px solid #294568;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.help-card h2 {
+    color: #3995ff;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.help-card p {
+    color: #b7c5d8;
+    line-height: 1.7;
+}
+
+.contact {
+    background: #14243b;
+    padding: 22px;
+    border-radius: 12px;
+    margin-top: 25px;
+}
+
+.contact h2 {
+    color: #3995ff;
+    margin-bottom: 12px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 13px;
+    margin-top: 12px;
+    border: 1px solid #294568;
+    border-radius: 8px;
+    background: #080f1d;
+    color: white;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 15px;
+    background: #2585ed;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1470d0;
+}
+
+.notice {
+    color: #ffda8a;
+    background: #352a16;
+    padding: 13px;
+    border-radius: 8px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+a {
+    display: inline-block;
+    margin-top: 25px;
+    color: #3995ff;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>MineHost Help</h1>
+</header>
+
+<main class="container">
+
+    <h2>Como podemos ajudar?</h2>
+
+    <p class="intro">
+        Bem-vindo à central de ajuda da MineHost.
+        Aqui você encontrará informações sobre
+        nossa futura plataforma de hospedagem Minecraft.
+    </p>
+
+    <section class="help-card">
+        <h2>🎮 Como criar um servidor?</h2>
+        <p>
+            Futuramente, você poderá acessar o painel,
+            escolher a versão do Minecraft e solicitar
+            a criação do seu servidor.
+        </p>
+    </section>
+
+    <section class="help-card">
+        <h2>👤 Como criar uma conta?</h2>
+        <p>
+            Acesse a página de cadastro, informe seus dados
+            e siga as instruções para registrar sua conta.
+            O sistema de cadastro ainda está em desenvolvimento.
+        </p>
+    </section>
+
+    <section class="help-card">
+        <h2>🔌 Como instalar plugins?</h2>
+        <p>
+            Planejamos disponibilizar uma área para pesquisar
+            e gerenciar plugins compatíveis com os servidores.
+        </p>
+    </section>
+
+    <section class="help-card">
+        <h2>⚙️ Problemas com o painel</h2>
+        <p>
+            Caso encontre dificuldades, esta área poderá
+            ajudar a identificar problemas e orientar
+            os usuários.
+        </p>
+    </section>
+
+    <section class="contact">
+        <h2>Entre em contato</h2>
+
+        <form id="helpForm">
+            <input
+                type="text"
+                id="name"
+                placeholder="Seu nome"
+                required
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Seu e-mail"
+                required
+            >
+
+            <textarea
+                id="message"
+                placeholder="Descreva sua dúvida..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Enviar mensagem
+            </button>
+        </form>
+
+        <div class="notice">
+            Este formulário é apenas demonstrativo.
+            Ele ainda não envia mensagens para a equipe MineHost.
+        </div>
+    </section>
+
+    <a href="index.html">← Voltar para o início</a>
+
+</main>
+
+<script>
+document.getElementById("helpForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    alert("Formulário demonstrativo! O envio de mensagens ainda será implementado.");
+});
+</script>
+
+</body>
+  </html>
+  
