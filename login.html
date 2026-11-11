@@ -5,57 +5,170 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Entrar - MineHost</title>
+
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background:#080e1b;
-    color:white;
-    font-family:Arial;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    margin:0;
+    background: #080e1b;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
 }
+
 .box {
-    background:#111e31;
-    padding:35px;
-    border-radius:15px;
-    width:85%;
-    max-width:350px;
+    background: #111e31;
+    padding: 35px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 350px;
 }
-h1 {color:#299bff;text-align:center}
+
+h1 {
+    color: #ff8a00;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
 input {
-    width:100%;
-    padding:13px;
-    margin:10px 0;
-    box-sizing:border-box;
-    background:#080e1b;
-    border:1px solid #30445e;
-    border-radius:7px;
-    color:white;
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    background: #080e1b;
+    border: 1px solid #30445e;
+    border-radius: 7px;
+    color: white;
 }
+
 button {
-    width:100%;
-    padding:14px;
-    background:#168cf1;
-    border:0;
-    border-radius:7px;
-    color:white;
-    font-weight:bold;
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    background: #ff8a00;
+    border: 0;
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }
-a {color:#299bff}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+a {
+    color: #ff9d26;
+}
+
+#mensagem {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 </style>
 </head>
+
 <body>
+
 <div class="box">
+
 <h1>MineHost</h1>
 <h2>Bem-vindo de volta!</h2>
-<input type="email" placeholder="Seu e-mail">
-<input type="password" placeholder="Sua senha">
-<button onclick="alert('O sistema de login será implementado!')">Entrar</button>
+
+<form id="formLogin">
+
+<input
+    type="email"
+    id="email"
+    placeholder="Seu e-mail"
+    autocomplete="email"
+    required
+>
+
+<input
+    type="password"
+    id="senha"
+    placeholder="Sua senha"
+    autocomplete="current-password"
+    required
+>
+
+<button type="submit" id="botaoEntrar">
+Entrar
+</button>
+
+</form>
+
+<p id="mensagem" role="status"></p>
+
 <p>Não tem conta? <a href="register.html">Cadastre-se</a></p>
 <p><a href="index.html">Voltar ao início</a></p>
+
 </div>
+
+<script>
+const API_URL = "http://localhost:3000/api";
+
+const formulario = document.getElementById("formLogin");
+const mensagem = document.getElementById("mensagem");
+const botao = document.getElementById("botaoEntrar");
+
+formulario.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value;
+
+    mensagem.textContent = "Entrando...";
+    botao.disabled = true;
+
+    try {
+        const resposta = await fetch(`${API_URL}/auth/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                senha: senha
+            })
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok || !dados.sucesso || !dados.token) {
+            throw new Error(dados.mensagem || "E-mail ou senha incorretos.");
+        }
+
+        localStorage.setItem("minehost_token", dados.token);
+
+        mensagem.textContent = "Login realizado! Redirecionando...";
+
+        window.location.href = "profile.html";
+
+    } catch (erro) {
+        mensagem.textContent =
+            erro.message === "Failed to fetch"
+            ? "Não foi possível conectar ao servidor MineHost."
+            : erro.message;
+
+        botao.disabled = false;
+    }
+});
+</script>
+
 </body>
-  </html>
-  
+</html>
+yh
