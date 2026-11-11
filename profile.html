@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080e1b">
-
 <title>Meu Perfil - MineHost</title>
 
 <style>
@@ -39,20 +38,30 @@ header {
     font-weight: bold;
 }
 
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.back-button, .logout-button {
+    padding: 11px 16px;
+    border-radius: 9px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
 .back-button {
     background: #17263a;
     border: 1px solid #ff8c24;
     color: #ff9b38;
-    padding: 11px 18px;
-    border-radius: 9px;
-    text-decoration: none;
-    transition: .3s;
 }
 
-.back-button:hover {
-    background: #ff8c24;
-    color: #080e1b;
-    box-shadow: 0 0 18px #ff8c2460;
+.logout-button {
+    background: #a83232;
+    border: 1px solid #d94b4b;
+    color: white;
 }
 
 main {
@@ -70,7 +79,7 @@ main {
     margin-bottom: 8px;
 }
 
-.page-title p {
+.page-title p, .profile-info p {
     color: #91a3bb;
 }
 
@@ -97,17 +106,11 @@ main {
     justify-content: center;
     font-size: 45px;
     border: 4px solid #ffb76c;
-    flex-shrink: 0;
 }
 
 .profile-info h2 {
     font-size: 25px;
     margin-bottom: 8px;
-}
-
-.profile-info p {
-    color: #a6b5ca;
-    margin-bottom: 12px;
 }
 
 .account-badge {
@@ -117,6 +120,7 @@ main {
     padding: 7px 12px;
     border-radius: 20px;
     font-size: 12px;
+    margin-top: 12px;
 }
 
 .section-title {
@@ -124,7 +128,7 @@ main {
     margin: 30px 0 17px;
 }
 
-.info-card {
+.info-card, .stat-card {
     background: #111e31;
     border: 1px solid #233752;
     border-radius: 13px;
@@ -135,7 +139,6 @@ main {
 .info-card h3 {
     color: #ff9b38;
     margin-bottom: 15px;
-    font-size: 17px;
 }
 
 .info-row {
@@ -156,9 +159,8 @@ main {
 }
 
 .info-row span:last-child {
-    color: white;
-    text-align: right;
     overflow-wrap: anywhere;
+    text-align: right;
 }
 
 .stats {
@@ -168,16 +170,7 @@ main {
 }
 
 .stat-card {
-    background: #111e31;
-    border: 1px solid #233752;
-    border-radius: 13px;
-    padding: 25px;
-    transition: .25s;
-}
-
-.stat-card:hover {
-    border-color: #ff8c24;
-    transform: translateY(-4px);
+    margin: 0;
 }
 
 .stat-icon {
@@ -193,7 +186,6 @@ main {
 
 .stat-card p {
     color: #91a3bb;
-    font-size: 14px;
 }
 
 .notice {
@@ -205,6 +197,12 @@ main {
     margin-top: 25px;
     line-height: 1.6;
     font-size: 14px;
+}
+
+.notice.error {
+    background: #351d24;
+    border-color: #a83c48;
+    color: #ffb2b8;
 }
 
 footer {
@@ -219,6 +217,7 @@ footer {
 @media(max-width: 600px) {
     header {
         padding: 15px 5%;
+        flex-wrap: wrap;
     }
 
     main {
@@ -251,9 +250,16 @@ footer {
 
 <header>
     <div class="logo">MineHost.</div>
-    <a href="dashboard.html" class="back-button">
-        ← Voltar ao painel
-    </a>
+
+    <div class="actions">
+        <a href="dashboard.html" class="back-button">
+            ← Voltar ao painel
+        </a>
+
+        <button class="logout-button" id="logoutButton">
+            Sair
+        </button>
+    </div>
 </header>
 
 <main>
@@ -264,49 +270,44 @@ footer {
     </div>
 
     <section class="profile-card">
-
         <div class="avatar">👤</div>
 
         <div class="profile-info">
-            <h2>Meu Perfil</h2>
+            <h2 id="profileName">Carregando...</h2>
             <p>Bem-vindo ao seu espaço MineHost!</p>
-            <span class="account-badge">Conta demonstrativa</span>
+            <span class="account-badge">Conta cadastrada</span>
         </div>
-
     </section>
 
     <h2 class="section-title">Informações da conta</h2>
 
     <section class="info-card">
-
         <h3>👤 Dados pessoais</h3>
 
         <div class="info-row">
             <span>Nome de usuário</span>
-            <span>Visitante</span>
+            <span id="username">Carregando...</span>
         </div>
 
         <div class="info-row">
             <span>E-mail</span>
-            <span>Não cadastrado</span>
+            <span id="email">Carregando...</span>
         </div>
 
         <div class="info-row">
-            <span>Tipo de conta</span>
-            <span>Demonstrativa</span>
+            <span>ID da conta</span>
+            <span id="userId">Carregando...</span>
         </div>
 
         <div class="info-row">
             <span>Status</span>
-            <span>Em desenvolvimento</span>
+            <span id="accountStatus">Verificando...</span>
         </div>
-
     </section>
 
     <h2 class="section-title">Estatísticas</h2>
 
     <section class="stats">
-
         <div class="stat-card">
             <div class="stat-icon">🖥️</div>
             <h3>0</h3>
@@ -318,13 +319,10 @@ footer {
             <h3>0</h3>
             <p>Plugins instalados</p>
         </div>
-
     </section>
 
-    <div class="notice">
-        ⚠️ Os dados exibidos nesta página ainda são demonstrativos.
-        A conexão com as informações reais da conta será feita
-        na próxima etapa da integração do perfil.
+    <div class="notice" id="notice">
+        Carregando informações da sua conta...
     </div>
 
 </main>
@@ -332,6 +330,112 @@ footer {
 <footer>
     © 2026 MineHost. Todos os direitos reservados.
 </footer>
+
+<script>
+const API_URL = "http://localhost:3000/api";
+const TOKEN_KEY = "minehost_token";
+
+const token = localStorage.getItem(TOKEN_KEY);
+
+function sair() {
+    localStorage.removeItem(TOKEN_KEY);
+    window.location.href = "login.html";
+}
+
+document.getElementById("logoutButton")
+    .addEventListener("click", sair);
+
+function decodificarToken(token) {
+    try {
+        const parte = token.split(".")[1];
+        const base64 = parte.replace(/-/g, "+").replace(/_/g, "/");
+        return JSON.parse(atob(base64));
+    } catch {
+        return null;
+    }
+}
+
+async function carregarPerfil() {
+    const notice = document.getElementById("notice");
+
+    if (!token) {
+        notice.textContent =
+            "Você precisa entrar na sua conta para visualizar o perfil.";
+
+        notice.classList.add("error");
+        document.getElementById("accountStatus").textContent =
+            "Não autenticado";
+
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1800);
+
+        return;
+    }
+
+    const dadosToken = decodificarToken(token);
+
+    if (!dadosToken || !dadosToken.sub) {
+        sair();
+        return;
+    }
+
+    try {
+        const resposta = await fetch(
+            `${API_URL}/users/${encodeURIComponent(dadosToken.sub)}`,
+            {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+        );
+
+        const dados = await resposta.json();
+
+        if (resposta.status === 401) {
+            sair();
+            return;
+        }
+
+        if (!resposta.ok || !dados.sucesso) {
+            throw new Error(
+                dados.mensagem || "Não foi possível carregar o perfil."
+            );
+        }
+
+        const usuario = dados.usuario;
+
+        document.getElementById("profileName").textContent =
+            usuario.username;
+
+        document.getElementById("username").textContent =
+            usuario.username;
+
+        document.getElementById("email").textContent =
+            usuario.email;
+
+        document.getElementById("userId").textContent =
+            usuario.id;
+
+        document.getElementById("accountStatus").textContent =
+            "Ativa";
+
+        notice.textContent =
+            "Seu perfil foi carregado com os dados recebidos do servidor.";
+
+    } catch (erro) {
+        notice.textContent =
+            "Não foi possível conectar ao servidor: " + erro.message;
+
+        notice.classList.add("error");
+
+        document.getElementById("accountStatus").textContent =
+            "Conexão indisponível";
+    }
+}
+
+carregarPerfil();
+</script>
 
 </body>
 </html>
