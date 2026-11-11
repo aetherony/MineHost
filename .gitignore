@@ -1,0 +1,38 @@
+
+# Dependências
+node_modules/
+
+# Arquivos de ambiente e senhas
+.env
+.env.local
+.env.production
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Arquivos temporários
+tmp/
+temp/
+.cache/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Testes e cobertura
+coverage/
+
+# Arquivos de backup
+*.bak
+*.old
+
+# Dados locais
+data/
+backups/
