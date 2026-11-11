@@ -1,5 +1,5 @@
 
-const jwt = require("jsonwebtoken");
+const { verificarToken } = require("./session");
 
 function verificarAutenticacao(req, res, next) {
     const cabecalho = req.headers.authorization;
@@ -12,22 +12,17 @@ function verificarAutenticacao(req, res, next) {
     }
 
     const token = cabecalho.substring(7);
+    const usuario = verificarToken(token);
 
-    try {
-        const usuario = jwt.verify(
-            token,
-            process.env.JWT_SECRET
-        );
-
-        req.usuario = usuario;
-        next();
-
-    } catch (erro) {
+    if (!usuario) {
         return res.status(401).json({
             sucesso: false,
             mensagem: "Token inválido ou expirado."
         });
     }
+
+    req.usuario = usuario;
+    next();
 }
 
 module.exports = verificarAutenticacao;
