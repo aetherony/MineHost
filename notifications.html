@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificações - MineHost</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b1120;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111c32;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      color: #38bdf8;
+    }
+
+    header a {
+      background: #2563eb;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    main {
+      width: 90%;
+      max-width: 850px;
+      margin: 40px auto;
+    }
+
+    .intro {
+      margin-bottom: 25px;
+    }
+
+    .intro h2 {
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      color: #94a3b8;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .actions button {
+      background: #1e40af;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .notification {
+      background: #172338;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 13px;
+      border-left: 4px solid #38bdf8;
+    }
+
+    .notification.read {
+      opacity: 0.65;
+      border-left-color: #64748b;
+    }
+
+    .notification h3 {
+      color: #7dd3fc;
+      margin-bottom: 8px;
+    }
+
+    .notification p {
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .notification small {
+      color: #64748b;
+    }
+
+    .empty {
+      display: none;
+      background: #172338;
+      padding: 30px;
+      text-align: center;
+      border-radius: 10px;
+      color: #94a3b8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>MineHost</h1>
+    <a href="dashboard.html">Voltar ao painel</a>
+  </header>
+
+  <main>
+
+    <section class="intro">
+      <h2>🔔 Notificações</h2>
+      <p>Acompanhe os avisos e novidades do MineHost.</p>
+    </section>
+
+    <div class="actions">
+      <span id="counter">3 notificações</span>
+      <button onclick="markAllRead()">
+        Marcar todas como lidas
+      </button>
+    </div>
+
+    <section id="notificationList">
+
+      <div class="notification">
+        <h3>🚀 Bem-vindo ao MineHost!</h3>
+        <p>
+          Obrigado por conhecer nosso projeto.
+          Estamos trabalhando para desenvolver novas funcionalidades.
+        </p>
+        <small>Comunicado demonstrativo</small>
+      </div>
+
+      <div class="notification">
+        <h3>🔧 Atualização da plataforma</h3>
+        <p>
+          Novas páginas e recursos estão sendo preparados
+          para melhorar a experiência no MineHost.
+        </p>
+        <small>Atualização demonstrativa</small>
+      </div>
+
+      <div class="notification">
+        <h3>🎮 Hospedagem Minecraft</h3>
+        <p>
+          A hospedagem real de servidores ainda está em desenvolvimento.
+        </p>
+        <small>Comunicado demonstrativo</small>
+      </div>
+
+    </section>
+
+    <div class="empty" id="emptyMessage">
+      Não há notificações disponíveis.
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 MineHost - Projeto em desenvolvimento.
+  </footer>
+
+  <script>
+    function updateCounter() {
+      const notifications = document.querySelectorAll(
+        ".notification:not(.read)"
+      );
+
+      const count = notifications.length;
+
+      document.getElementById("counter").textContent =
+        count + (count === 1
+          ? " notificação não lida"
+          : " notificações não lidas");
+
+      document.getElementById("emptyMessage").style.display =
+        document.querySelectorAll(".notification").length === 0
+          ? "block"
+          : "none";
+    }
+
+    function markAllRead() {
+      document.querySelectorAll(".notification").forEach(function(item) {
+        item.classList.add("read");
+      });
+
+      updateCounter();
+    }
+
+    updateCounter();
+  </script>
+
+</body>
+</html>
