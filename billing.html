@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planos - MineHost</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b1120;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111c32;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      color: #38bdf8;
+    }
+
+    header a {
+      color: white;
+      background: #2563eb;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    main {
+      width: 90%;
+      max-width: 1100px;
+      margin: 40px auto;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .intro h2 {
+      color: #38bdf8;
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .intro p {
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .plan {
+      background: #172338;
+      padding: 28px 22px;
+      border-radius: 13px;
+      border: 1px solid #26364f;
+      text-align: center;
+    }
+
+    .featured {
+      border: 2px solid #38bdf8;
+    }
+
+    .plan h3 {
+      font-size: 23px;
+      margin-bottom: 15px;
+      color: #7dd3fc;
+    }
+
+    .price {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .period {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .plan ul {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 25px;
+    }
+
+    .plan li {
+      padding: 11px 0;
+      border-bottom: 1px solid #334155;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .plan button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .plan button:hover {
+      background: #1d4ed8;
+    }
+
+    .notice {
+      background: #302b19;
+      color: #facc15;
+      padding: 16px;
+      border-radius: 9px;
+      margin-top: 30px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>MineHost</h1>
+    <a href="dashboard.html">Voltar ao painel</a>
+  </header>
+
+  <main>
+
+    <section class="intro">
+      <h2>Escolha seu plano</h2>
+      <p>
+        Conheça os planos que planejamos oferecer
+        para hospedar seus servidores Minecraft.
+      </p>
+    </section>
+
+    <section class="plans">
+
+      <div class="plan">
+        <h3>Gratuito</h3>
+        <div class="price">R$ 0</div>
+        <div class="period">Plano demonstrativo</div>
+
+        <ul>
+          <li>✓ Acesso ao painel</li>
+          <li>✓ Gerenciamento de servidores</li>
+          <li>✓ Área de plugins</li>
+          <li>✓ Suporte básico</li>
+        </ul>
+
+        <button onclick="selectPlan('Gratuito')">
+          Conhecer plano
+        </button>
+      </div>
+
+      <div class="plan featured">
+        <h3>Pro</h3>
+        <div class="price">A definir</div>
+        <div class="period">Preço ainda não definido</div>
+
+        <ul>
+          <li>✓ Recursos do plano Gratuito</li>
+          <li>✓ Recursos adicionais planejados</li>
+          <li>✓ Mais opções de configuração</li>
+          <li>✓ Suporte prioritário planejado</li>
+        </ul>
+
+        <button onclick="selectPlan('Pro')">
+          Conhecer plano
+        </button>
+      </div>
+
+      <div class="plan">
+        <h3>Premium</h3>
+        <div class="price">A definir</div>
+        <div class="period">Preço ainda não definido</div>
+
+        <ul>
+          <li>✓ Recursos do plano Pro</li>
+          <li>✓ Recursos avançados planejados</li>
+          <li>✓ Mais possibilidades de gerenciamento</li>
+          <li>✓ Atendimento especial planejado</li>
+        </ul>
+
+        <button onclick="selectPlan('Premium')">
+          Conhecer plano
+        </button>
+      </div>
+
+    </section>
+
+    <div class="notice">
+      ⚠️ Os planos são apenas ilustrativos.
+      Nenhuma assinatura ou cobrança está disponível.
+      Os recursos e preços ainda serão definidos.
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 MineHost - Projeto em desenvolvimento.
+  </footer>
+
+  <script>
+    function selectPlan(plan) {
+      alert(
+        "Você selecionou o plano " + plan +
+        ". Os planos reais ainda não estão disponíveis."
+      );
+    }
+  </script>
+
+</body>
+</html>
