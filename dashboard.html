@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel - MineHost</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#080e1b;
+ color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:#111e31;
+ padding:20px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-bottom:1px solid #233752;
+}
+.logo{font-size:25px;color:#299bff;font-weight:bold}
+header a{color:white;text-decoration:none}
+.container{padding:30px 6%}
+.welcome{margin-bottom:30px}
+.welcome p{color:#91a3bb}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:18px;
+}
+.card{
+ background:#111e31;
+ border:1px solid #233752;
+ border-radius:12px;
+ padding:22px;
+}
+.card p{color:#91a3bb}
+.number{font-size:28px;font-weight:bold}
+.server{
+ margin-top:30px;
+ background:#111e31;
+ padding:25px;
+ border-radius:12px;
+ border:1px solid #233752;
+}
+button{
+ background:#168cf1;
+ color:white;
+ border:0;
+ padding:13px 20px;
+ border-radius:8px;
+ font-weight:bold;
+ cursor:pointer;
+}
+.empty{
+ text-align:center;
+ padding:35px 10px;
+}
+.empty h3{font-size:22px}
+.empty p{color:#91a3bb;line-height:1.6}
+footer{
+ text-align:center;
+ color:#71839b;
+ padding:30px;
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">MineHost.</div>
+ <a href="login.html">Sair</a>
+</header>
+
+<main class="container">
+
+ <section class="welcome">
+  <h1>Meu painel</h1>
+  <p>Bem-vindo ao seu espaço MineHost!</p>
+ </section>
+
+ <section class="stats">
+  <div class="card">
+   <p>Meus servidores</p>
+   <div class="number">0</div>
+  </div>
+
+  <div class="card">
+   <p>Servidores online</p>
+   <div class="number">0</div>
+  </div>
+
+  <div class="card">
+   <p>Plano atual</p>
+   <div class="number">Gratuito</div>
+  </div>
+ </section>
+
+ <section class="server">
+  <h2>Meus servidores</h2>
+
+  <div class="empty">
+   <h3>🎮 Nenhum servidor ainda</h3>
+   <p>
+    Você ainda não possui um servidor.
+    Crie seu primeiro mundo Minecraft!
+   </p>
+
+   <button onclick="location.href='servers.html'">
+    + Criar servidor
+   </button>
+  </div>
+ </section>
+
+</main>
+
+<footer>
+ © 2026 MineHost. Todos os direitos reservados.
+</footer>
+
+</body>
+  </html>
+  
