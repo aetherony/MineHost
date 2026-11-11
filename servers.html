@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080e1b">
+<title>Meus Servidores - MineHost</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080e1b;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #111e31;
+    border-bottom: 1px solid #233752;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 26px;
+    color: #299bff;
+    font-weight: bold;
+}
+
+header a {
+    color: #b8c5d8;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+.heading {
+    margin-bottom: 30px;
+}
+
+.heading h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.heading p {
+    color: #91a3bb;
+}
+
+.server-card {
+    background: #111e31;
+    border: 1px solid #233752;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.server-card h2 {
+    margin-bottom: 10px;
+}
+
+.server-card .description {
+    color: #91a3bb;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin: 18px 0 9px;
+    font-size: 14px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    background: #080e1b;
+    color: white;
+    border: 1px solid #30445e;
+    border-radius: 8px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #299bff;
+}
+
+button {
+    background: #168cf1;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 22px;
+}
+
+button:hover {
+    background: #0872d0;
+}
+
+.server-list {
+    background: #111e31;
+    border: 1px solid #233752;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.empty {
+    text-align: center;
+    padding: 35px 10px;
+    color: #91a3bb;
+}
+
+.empty .icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.server-item {
+    background: #0b1728;
+    padding: 18px;
+    margin-top: 15px;
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.status {
+    color: #f3bd55;
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #71839b;
+}
+
+@media(max-width: 600px) {
+    .heading h1 {
+        font-size: 25px;
+    }
+
+    .server-card, .server-list {
+        padding: 19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">MineHost.</div>
+    <a href="dashboard.html">← Meu painel</a>
+</header>
+
+<main class="container">
+
+    <section class="heading">
+        <h1>Meus servidores</h1>
+        <p>Crie e organize seus mundos Minecraft.</p>
+    </section>
+
+    <section class="server-card">
+
+        <h2>🎮 Criar novo servidor</h2>
+
+        <p class="description">
+            Configure seu novo servidor Minecraft.
+        </p>
+
+        <form id="serverForm">
+
+            <label>Nome do servidor</label>
+            <input
+                type="text"
+                id="serverName"
+                placeholder="Ex: Meu Mundo"
+                maxlength="30"
+                required
+            >
+
+            <label>Versão do Minecraft</label>
+            <select id="version">
+                <option value="1.21.11">1.21.11</option>
+                <option value="1.21.8">1.21.8</option>
+                <option value="1.20.4">1.20.4</option>
+                <option value="1.19.4">1.19.4</option>
+            </select>
+
+            <label>Tipo de servidor</label>
+            <select id="serverType">
+                <option value="Vanilla">Vanilla</option>
+                <option value="Paper">Paper</option>
+                <option value="Spigot">Spigot</option>
+            </select>
+
+            <button type="submit">
+                + Criar servidor
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="server-list">
+
+        <h2>Seus servidores</h2>
+
+        <div id="serverList" class="empty">
+            <div class="icon">🖥️</div>
+            <h3>Nenhum servidor cadastrado</h3>
+            <p>Seus servidores aparecerão aqui.</p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    © 2026 MineHost. Todos os direitos reservados.
+</footer>
+
+<script>
+const form = document.getElementById("serverForm");
+const serverList = document.getElementById("serverList");
+
+let servers = [];
+
+function renderServers() {
+    if (servers.length === 0) {
+        serverList.className = "empty";
+        serverList.innerHTML = `
+            <div class="icon">🖥️</div>
+            <h3>Nenhum servidor cadastrado</h3>
+            <p>Seus servidores aparecerão aqui.</p>
+        `;
+        return;
+    }
+
+    serverList.className = "";
+
+    serverList.innerHTML = servers.map((server, index) => `
+        <div class="server-item">
+            <div>
+                <h3></h3>
+                <p class="status">● Aguardando configuração</p>
+                <small></small>
+            </div>
+            <button onclick="deleteServer(${index})">
+                Excluir
+            </button>
+        </div>
+    `).join("");
+
+    servers.forEach((server, index) => {
+        const item = serverList.children[index];
+        item.querySelector("h3").textContent = server.name;
+        item.querySelector("small").textContent =
+            server.version + " • " + server.type;
+    });
+}
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (servers.length >= 5) {
+        alert("Limite demonstrativo de 5 servidores.");
+        return;
+    }
+
+    servers.push({
+        name: document.getElementById("serverName").value,
+        version: document.getElementById("version").value,
+        type: document.getElementById("serverType").value
+    });
+
+    renderServers();
+    form.reset();
+
+    alert("Servidor adicionado à demonstração!");
+});
+
+function deleteServer(index) {
+    servers.splice(index, 1);
+    renderServers();
+}
+</script>
+
+</body>
+  </html>
+  
