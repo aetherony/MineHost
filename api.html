@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MineHost - API</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080f1d;
+    color: white;
+    min-height: 100vh;
+}
+
+header {
+    background: #101d33;
+    padding: 22px;
+    border-bottom: 1px solid #233b5e;
+}
+
+header h1 {
+    color: #3995ff;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+h2 {
+    margin: 25px 0 12px;
+    color: #3995ff;
+}
+
+p {
+    color: #b7c5d8;
+    line-height: 1.7;
+}
+
+.endpoint {
+    background: #14243b;
+    border: 1px solid #294568;
+    border-radius: 10px;
+    padding: 18px;
+    margin: 15px 0;
+    overflow-wrap: anywhere;
+}
+
+.method {
+    color: #5bdb9b;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.post {
+    color: #ffbd59;
+}
+
+code {
+    color: #83bcff;
+}
+
+.warning {
+    background: #352a16;
+    border: 1px solid #84652a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 25px;
+    color: #ffda8a;
+}
+
+a {
+    display: inline-block;
+    margin-top: 25px;
+    color: #3995ff;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>MineHost API</h1>
+</header>
+
+<div class="container">
+
+    <h2>Documentação da API</h2>
+
+    <p>
+        Bem-vindo à documentação da API MineHost.
+        Aqui você encontrará exemplos de como os sistemas
+        poderão se comunicar com a plataforma.
+    </p>
+
+    <h2>Endpoints planejados</h2>
+
+    <div class="endpoint">
+        <span class="method">GET</span>
+        <code>/api/status</code>
+        <p>Consultar o status geral da plataforma.</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method">GET</span>
+        <code>/api/servers</code>
+        <p>Consultar a lista de servidores da conta.</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <code>/api/servers</code>
+        <p>Solicitar a criação de um servidor Minecraft.</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method">GET</span>
+        <code>/api/servers/{id}</code>
+        <p>Consultar informações de um servidor específico.</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <code>/api/servers/{id}/start</code>
+        <p>Solicitar a inicialização de um servidor.</p>
+    </div>
+
+    <h2>Autenticação</h2>
+
+    <p>
+        Futuramente, a API utilizará autenticação segura
+        para proteger as informações das contas.
+    </p>
+
+    <div class="warning">
+        <strong>Atenção:</strong>
+        Esta documentação apresenta apenas exemplos planejados.
+        A API e o backend ainda não foram implementados.
+        Nenhum desses endpoints funciona atualmente.
+    </div>
+
+    <a href="index.html">← Voltar para o início</a>
+
+</div>
+
+</body>
+  </html>
+  
