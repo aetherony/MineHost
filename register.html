@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080e1b">
+<title>Criar conta - MineHost</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #080e1b;
+    font-family: Arial, sans-serif;
+    color: white;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 35px;
+    background: #111e31;
+    border: 1px solid #233752;
+    border-radius: 16px;
+}
+
+.logo {
+    text-align: center;
+    color: #299bff;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.description {
+    text-align: center;
+    color: #91a3bb;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin: 15px 0 8px;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    background: #080e1b;
+    border: 1px solid #30445e;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+}
+
+input:focus {
+    border-color: #299bff;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 25px;
+    background: #168cf1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0872d0;
+}
+
+.login {
+    text-align: center;
+    color: #91a3bb;
+    font-size: 14px;
+    margin-top: 22px;
+}
+
+a {
+    color: #299bff;
+    text-decoration: none;
+}
+
+.back {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">MineHost.</div>
+
+    <h2>Criar sua conta</h2>
+
+    <p class="description">
+        Entre para conhecer a experiência MineHost.
+    </p>
+
+    <form id="registerForm">
+
+        <label>Nome de usuário</label>
+        <input type="text" placeholder="Seu nome" required>
+
+        <label>E-mail</label>
+        <input type="email" placeholder="Seu e-mail" required>
+
+        <label>Senha</label>
+        <input type="password" placeholder="Crie uma senha" minlength="8" required>
+
+        <label>Confirmar senha</label>
+        <input type="password" placeholder="Digite a senha novamente" minlength="8" required>
+
+        <button type="submit">Criar minha conta →</button>
+
+    </form>
+
+    <p class="login">
+        Já possui uma conta?
+        <a href="login.html">Entrar</a>
+    </p>
+
+    <a href="index.html" class="back">← Voltar ao início</a>
+
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const passwords = this.querySelectorAll('input[type="password"]');
+
+    if (passwords[0].value !== passwords[1].value) {
+        alert("As senhas não são iguais!");
+        return;
+    }
+
+    alert("A interface está pronta! O sistema de cadastro ainda será conectado.");
+});
+</script>
+
+</body>
+  </html>
+  
