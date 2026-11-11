@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logs - MineHost</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b1120;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111c32;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      color: #38bdf8;
+    }
+
+    header a {
+      background: #2563eb;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    main {
+      width: 90%;
+      max-width: 950px;
+      margin: 40px auto;
+    }
+
+    .intro {
+      margin-bottom: 25px;
+    }
+
+    .intro h2 {
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .notice {
+      background: #302b19;
+      color: #facc15;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      padding: 11px;
+      border: 1px solid #334155;
+      border-radius: 7px;
+      background: #172338;
+      color: white;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    button {
+      padding: 11px 16px;
+      border: none;
+      border-radius: 7px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+
+    .log {
+      background: #172338;
+      padding: 18px;
+      border-radius: 9px;
+      margin-bottom: 12px;
+      border-left: 4px solid #38bdf8;
+    }
+
+    .log h3 {
+      color: #7dd3fc;
+      margin-bottom: 7px;
+    }
+
+    .log p {
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .log small {
+      display: block;
+      margin-top: 10px;
+      color: #64748b;
+    }
+
+    .empty {
+      display: none;
+      background: #172338;
+      padding: 25px;
+      border-radius: 9px;
+      text-align: center;
+      color: #94a3b8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>MineHost</h1>
+    <a href="dashboard.html">Voltar ao painel</a>
+  </header>
+
+  <main>
+
+    <section class="intro">
+      <h2>📋 Histórico de atividades</h2>
+      <p>
+        Consulte os registros de atividades da plataforma.
+      </p>
+    </section>
+
+    <div class="notice">
+      ⚠️ Estes são registros fictícios para demonstração.
+      O histórico real será conectado ao sistema futuramente.
+    </div>
+
+    <div class="toolbar">
+      <input
+        type="text"
+        id="search"
+        placeholder="Pesquisar atividade..."
+        oninput="filterLogs()"
+      >
+
+      <select id="filter" onchange="filterLogs()">
+        <option value="all">Todas as atividades</option>
+        <option value="server">Servidores</option>
+        <option value="account">Conta</option>
+        <option value="system">Sistema</option>
+      </select>
+
+      <button onclick="clearFilters()">
+        Limpar filtros
+      </button>
+    </div>
+
+    <section id="logs">
+
+      <div class="log" data-type="account">
+        <h3>👤 Acesso à conta</h3>
+        <p>Uma sessão demonstrativa foi iniciada.</p>
+        <small>Registro de exemplo</small>
+      </div>
+
+      <div class="log" data-type="server">
+        <h3>🎮 Servidor criado</h3>
+        <p>Um servidor de demonstração foi adicionado à lista.</p>
+        <small>Registro de exemplo</small>
+      </div>
+
+      <div class="log" data-type="system">
+        <h3>⚙️ Configurações</h3>
+        <p>A página de configurações foi acessada.</p>
+        <small>Registro de exemplo</small>
+      </div>
+
+      <div class="log" data-type="system">
+        <h3>🔌 Plugins</h3>
+        <p>A biblioteca demonstrativa de plugins foi acessada.</p>
+        <small>Registro de exemplo</small>
+      </div>
+
+    </section>
+
+    <div class="empty" id="empty">
+      Nenhuma atividade encontrada.
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 MineHost - Projeto em desenvolvimento.
+  </footer>
+
+  <script>
+    function filterLogs() {
+      const search = document
+        .getElementById("search")
+        .value.toLowerCase();
+
+      const filter = document.getElementById("filter").value;
+      const logs = document.querySelectorAll(".log");
+
+      let visible = 0;
+
+      logs.forEach(function(log) {
+        const matchesText = log.textContent
+          .toLowerCase()
+          .includes(search);
+
+        const matchesType =
+          filter === "all" || log.dataset.type === filter;
+
+        const show = matchesText && matchesType;
+
+        log.style.display = show ? "block" : "none";
+
+        if (show) visible++;
+      });
+
+      document.getElementById("empty").style.display =
+        visible === 0 ? "block" : "none";
+    }
+
+    function clearFilters() {
+      document.getElementById("search").value = "";
+      document.getElementById("filter").value = "all";
+      filterLogs();
+    }
+
+    filterLogs();
+  </script>
+
+</body>
+        </html>
+        
