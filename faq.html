@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MineHost - FAQ</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080f1d;
+    color: white;
+}
+
+header {
+    background: #101d33;
+    padding: 22px;
+    border-bottom: 1px solid #233b5e;
+}
+
+header h1 {
+    color: #3995ff;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+.intro {
+    color: #b7c5d8;
+    margin: 12px 0 25px;
+    line-height: 1.7;
+}
+
+.faq {
+    background: #14243b;
+    border: 1px solid #294568;
+    border-radius: 10px;
+    margin-bottom: 13px;
+    overflow: hidden;
+}
+
+.question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 19px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.question:hover {
+    background: #1b3150;
+}
+
+.answer {
+    display: none;
+    padding: 0 19px 19px;
+    color: #b7c5d8;
+    line-height: 1.7;
+}
+
+.faq.active .answer {
+    display: block;
+}
+
+.arrow {
+    color: #3995ff;
+}
+
+a {
+    display: inline-block;
+    margin-top: 25px;
+    color: #3995ff;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>MineHost FAQ</h1>
+</header>
+
+<main class="container">
+
+    <h2>Perguntas Frequentes</h2>
+
+    <p class="intro">
+        Encontre respostas para as principais dúvidas
+        sobre a plataforma MineHost.
+    </p>
+
+    <div class="faq">
+        <button class="question">
+            A MineHost é gratuita?
+            <span class="arrow">+</span>
+        </button>
+        <div class="answer">
+            Planejamos oferecer um plano gratuito.
+            Os detalhes dos planos ainda serão definidos.
+        </div>
+    </div>
+
+    <div class="faq">
+        <button class="question">
+            Posso criar servidores Minecraft?
+            <span class="arrow">+</span>
+        </button>
+        <div class="answer">
+            Essa é uma das principais funções planejadas
+            para a MineHost. O sistema de hospedagem ainda
+            está em desenvolvimento.
+        </div>
+    </div>
+
+    <div class="faq">
+        <button class="question">
+            Quais versões serão suportadas?
+            <span class="arrow">+</span>
+        </button>
+        <div class="answer">
+            Pretendemos oferecer diferentes versões
+            do Minecraft Java Edition.
+            A lista definitiva ainda será definida.
+        </div>
+    </div>
+
+    <div class="faq">
+        <button class="question">
+            Posso instalar plugins?
+            <span class="arrow">+</span>
+        </button>
+        <div class="answer">
+            Planejamos disponibilizar suporte a plugins
+            em versões compatíveis, como Paper e Spigot.
+        </div>
+    </div>
+
+    <div class="faq">
+        <button class="question">
+            A MineHost funciona 24 horas?
+            <span class="arrow">+</span>
+        </button>
+        <div class="answer">
+            Ainda não temos uma garantia de disponibilidade.
+            Isso dependerá da infraestrutura que será implementada.
+        </div>
+    </div>
+
+    <div class="faq">
+        <button class="question">
+            Como posso entrar em contato?
+            <span class="arrow">+</span>
+        </button>
+        <div class="answer">
+            Você poderá utilizar a futura central de suporte
+            para entrar em contato com a equipe MineHost.
+        </div>
+    </div>
+
+    <a href="index.html">← Voltar para o início</a>
+
+</main>
+
+<script>
+const questions = document.querySelectorAll(".question");
+
+questions.forEach(function(question) {
+    question.addEventListener("click", function() {
+        const faq = question.parentElement;
+        const isOpen = faq.classList.contains("active");
+
+        document.querySelectorAll(".faq").forEach(function(item) {
+            item.classList.remove("active");
+            item.querySelector(".arrow").textContent = "+";
+        });
+
+        if (!isOpen) {
+            faq.classList.add("active");
+            question.querySelector(".arrow").textContent = "−";
+        }
+    });
+});
+</script>
+
+</body>
+</html>
