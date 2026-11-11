@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil - MineHost</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b1120;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111c32;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      color: #38bdf8;
+    }
+
+    header a {
+      background: #2563eb;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    main {
+      width: 90%;
+      max-width: 850px;
+      margin: 40px auto;
+    }
+
+    .profile-card {
+      background: #172338;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #2563eb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 45px;
+      margin: 0 auto 15px;
+      border: 4px solid #38bdf8;
+    }
+
+    .profile-card h2 {
+      color: #38bdf8;
+      margin-bottom: 8px;
+    }
+
+    .profile-card p {
+      color: #94a3b8;
+    }
+
+    .info-card {
+      background: #172338;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .info-card h3 {
+      color: #38bdf8;
+      margin-bottom: 15px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 13px 0;
+      border-bottom: 1px solid #334155;
+      flex-wrap: wrap;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-row span:first-child {
+      color: #94a3b8;
+    }
+
+    .info-row span:last-child {
+      color: white;
+    }
+
+    .notice {
+      background: #302b19;
+      color: #facc15;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>MineHost</h1>
+    <a href="dashboard.html">Voltar ao painel</a>
+  </header>
+
+  <main>
+
+    <section class="profile-card">
+      <div class="avatar">👤</div>
+      <h2>Meu Perfil</h2>
+      <p>Bem-vindo ao seu espaço no MineHost!</p>
+    </section>
+
+    <section class="info-card">
+      <h3>Informações da conta</h3>
+
+      <div class="info-row">
+        <span>Nome de usuário</span>
+        <span>Visitante</span>
+      </div>
+
+      <div class="info-row">
+        <span>E-mail</span>
+        <span>Não cadastrado</span>
+      </div>
+
+      <div class="info-row">
+        <span>Tipo de conta</span>
+        <span>Demonstrativa</span>
+      </div>
+
+      <div class="info-row">
+        <span>Status</span>
+        <span>Projeto em desenvolvimento</span>
+      </div>
+    </section>
+
+    <section class="info-card">
+      <h3>Estatísticas</h3>
+
+      <div class="info-row">
+        <span>Servidores criados</span>
+        <span>0</span>
+      </div>
+
+      <div class="info-row">
+        <span>Plugins instalados</span>
+        <span>0</span>
+      </div>
+    </section>
+
+    <div class="notice">
+      ⚠️ Esta página ainda utiliza informações demonstrativas.
+      Os dados reais da conta serão conectados futuramente.
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 MineHost - Todos os direitos reservados.
+  </footer>
+
+</body>
+        </html>
+  
