@@ -35,7 +35,7 @@ body {
 
 .logo {
     text-align: center;
-    color: #299bff;
+    color: #ff8a00;
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 25px;
@@ -70,14 +70,14 @@ input {
 }
 
 input:focus {
-    border-color: #299bff;
+    border-color: #ff8a00;
 }
 
 button {
     width: 100%;
     padding: 15px;
     margin-top: 25px;
-    background: #168cf1;
+    background: #ff8a00;
     color: white;
     border: none;
     border-radius: 8px;
@@ -86,8 +86,9 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background: #0872d0;
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .login {
@@ -98,7 +99,7 @@ button:hover {
 }
 
 a {
-    color: #299bff;
+    color: #ff9d26;
     text-decoration: none;
 }
 
@@ -106,6 +107,12 @@ a {
     display: block;
     text-align: center;
     margin-top: 20px;
+}
+
+#mensagem {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
 }
 </style>
 </head>
@@ -124,21 +131,53 @@ a {
 
     <form id="registerForm">
 
-        <label>Nome de usuário</label>
-        <input type="text" placeholder="Seu nome" required>
+        <label for="nome">Nome de usuário</label>
+        <input
+            type="text"
+            id="nome"
+            placeholder="Seu nome"
+            minlength="3"
+            maxlength="30"
+            autocomplete="username"
+            required
+        >
 
-        <label>E-mail</label>
-        <input type="email" placeholder="Seu e-mail" required>
+        <label for="email">E-mail</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="Seu e-mail"
+            autocomplete="email"
+            required
+        >
 
-        <label>Senha</label>
-        <input type="password" placeholder="Crie uma senha" minlength="8" required>
+        <label for="senha">Senha</label>
+        <input
+            type="password"
+            id="senha"
+            placeholder="Crie uma senha"
+            minlength="8"
+            autocomplete="new-password"
+            required
+        >
 
-        <label>Confirmar senha</label>
-        <input type="password" placeholder="Digite a senha novamente" minlength="8" required>
+        <label for="confirmacao">Confirmar senha</label>
+        <input
+            type="password"
+            id="confirmacao"
+            placeholder="Digite a senha novamente"
+            minlength="8"
+            autocomplete="new-password"
+            required
+        >
 
-        <button type="submit">Criar minha conta →</button>
+        <button type="submit" id="botao">
+            Criar minha conta →
+        </button>
 
     </form>
+
+    <p id="mensagem" role="status"></p>
 
     <p class="login">
         Já possui uma conta?
@@ -150,20 +189,74 @@ a {
 </div>
 
 <script>
-document.getElementById("registerForm").addEventListener("submit", function(event) {
+const API_URL = "http://localhost:3000/api";
+
+const formulario = document.getElementById("registerForm");
+const mensagem = document.getElementById("mensagem");
+const botao = document.getElementById("botao");
+
+formulario.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const passwords = this.querySelectorAll('input[type="password"]');
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value;
+    const confirmacao = document.getElementById("confirmacao").value;
 
-    if (passwords[0].value !== passwords[1].value) {
-        alert("As senhas não são iguais!");
+    if (senha !== confirmacao) {
+        mensagem.textContent = "As senhas não são iguais.";
         return;
     }
 
-    alert("A interface está pronta! O sistema de cadastro ainda será conectado.");
+    if (nome.length < 3) {
+        mensagem.textContent = "O nome precisa ter pelo menos 3 caracteres.";
+        return;
+    }
+
+    botao.disabled = true;
+    mensagem.textContent = "Criando sua conta...";
+
+    try {
+        const resposta = await fetch(`${API_URL}/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome,
+                email,
+                senha,
+                confirmacao
+            })
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok || !dados.sucesso) {
+            throw new Error(dados.mensagem || "Não foi possível criar sua conta.");
+        }
+
+        if (dados.token) {
+            localStorage.setItem("minehost_token", dados.token);
+            mensagem.textContent = "Conta criada! Redirecionando...";
+            window.location.href = "profile.html";
+        } else {
+            mensagem.textContent = "Conta criada! Faça login para continuar.";
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
+        }
+
+    } catch (erro) {
+        mensagem.textContent =
+            erro.message === "Failed to fetch"
+            ? "Não foi possível conectar ao servidor MineHost."
+            : erro.message;
+
+        botao.disabled = false;
+    }
 });
 </script>
 
 </body>
-  </html>
-  
+</html>
