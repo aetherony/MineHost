@@ -1,12 +1,11 @@
 
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+
 # Dependências
 node_modules/
-
-# Arquivos de ambiente e senhas
-.env
-.env.local
-.env.production
-!.env.example
 
 # Logs
 logs/
@@ -14,7 +13,7 @@ logs/
 npm-debug.log*
 
 # Arquivos temporários
-tmp/
+.tmp/
 temp/
 .cache/
 
@@ -22,17 +21,5 @@ temp/
 .DS_Store
 Thumbs.db
 
-# Editor
-.vscode/
-.idea/
-
 # Testes e cobertura
 coverage/
-
-# Arquivos de backup
-*.bak
-*.old
-
-# Dados locais
-data/
-backups/
