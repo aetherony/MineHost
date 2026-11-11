@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080e1b">
+<title>Configurações - MineHost</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080e1b;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #111e31;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #233752;
+}
+
+.logo {
+    color: #299bff;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+header a {
+    color: #b8c5d8;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #91a3bb;
+    margin-bottom: 30px;
+}
+
+.section {
+    background: #111e31;
+    border: 1px solid #233752;
+    border-radius: 13px;
+    padding: 25px;
+    margin-bottom: 22px;
+}
+
+.section h2 {
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 16px 0 8px;
+    font-size: 14px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    background: #080e1b;
+    color: white;
+    border: 1px solid #30445e;
+    border-radius: 8px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #299bff;
+}
+
+button {
+    padding: 13px 20px;
+    margin-top: 20px;
+    background: #168cf1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.danger {
+    background: #d83d4b;
+}
+
+.description {
+    color: #91a3bb;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #71839b;
+}
+
+@media(max-width: 600px) {
+    .section {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">MineHost.</div>
+    <a href="dashboard.html">← Voltar ao painel</a>
+</header>
+
+<main class="container">
+
+    <h1>Configurações</h1>
+    <p class="subtitle">
+        Gerencie suas preferências no MineHost.
+    </p>
+
+    <section class="section">
+
+        <h2>👤 Meu perfil</h2>
+
+        <form id="profileForm">
+
+            <label>Nome de usuário</label>
+            <input type="text" id="username"
+            placeholder="Seu nome de usuário" required>
+
+            <label>E-mail</label>
+            <input type="email" id="email"
+            placeholder="Seu e-mail" required>
+
+            <button type="submit">
+                Salvar alterações
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="section">
+
+        <h2>🔒 Segurança</h2>
+
+        <label>Nova senha</label>
+        <input type="password" id="newPassword"
+        placeholder="Digite uma nova senha">
+
+        <label>Confirmar nova senha</label>
+        <input type="password" id="confirmPassword"
+        placeholder="Confirme sua senha">
+
+        <button onclick="changePassword()">
+            Atualizar senha
+        </button>
+
+        <p class="description">
+            A alteração real da senha será conectada ao sistema de contas.
+        </p>
+
+    </section>
+
+    <section class="section">
+
+        <h2>🎨 Aparência</h2>
+
+        <label>Tema do painel</label>
+
+        <select id="theme">
+            <option value="dark">Escuro</option>
+            <option value="light">Claro (em breve)</option>
+        </select>
+
+        <button onclick="saveTheme()">
+            Salvar preferência
+        </button>
+
+    </section>
+
+    <section class="section">
+
+        <h2>🚪 Sessão</h2>
+
+        <p class="description">
+            Volte para a página inicial do MineHost.
+        </p>
+
+        <button class="danger"
+        onclick="location.href='index.html'">
+            Sair da conta
+        </button>
+
+    </section>
+
+</main>
+
+<footer>
+    © 2026 MineHost. Todos os direitos reservados.
+</footer>
+
+<script>
+function changePassword() {
+    const password = document.getElementById("newPassword").value;
+    const confirm = document.getElementById("confirmPassword").value;
+
+    if (!password || password.length < 8) {
+        alert("A senha precisa ter pelo menos 8 caracteres.");
+        return;
+    }
+
+    if (password !== confirm) {
+        alert("As senhas não correspondem.");
+        return;
+    }
+
+    alert("A interface está pronta! A troca real de senha será implementada depois.");
+}
+
+document.getElementById("profileForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Perfil demonstrativo atualizado!");
+});
+
+function saveTheme() {
+    const theme = document.getElementById("theme").value;
+    localStorage.setItem("minehost-theme", theme);
+    alert("Preferência salva!");
+}
+</script>
+
+</body>
+</html>
