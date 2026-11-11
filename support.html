@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suporte - MineHost</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b1120;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111c32;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      color: #38bdf8;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      background: #1e40af;
+      padding: 10px 16px;
+      border-radius: 8px;
+    }
+
+    main {
+      width: 90%;
+      max-width: 850px;
+      margin: 40px auto;
+    }
+
+    h2 {
+      color: #38bdf8;
+      margin-bottom: 15px;
+    }
+
+    .intro {
+      color: #cbd5e1;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .faq-item {
+      background: #172338;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .faq-item h3 {
+      color: #7dd3fc;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .form-box {
+      background: #172338;
+      padding: 25px;
+      border-radius: 12px;
+      margin-top: 35px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #334155;
+      border-radius: 7px;
+      background: #0b1120;
+      color: white;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 13px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      padding: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>MineHost</h1>
+    <a href="dashboard.html">Voltar ao painel</a>
+  </header>
+
+  <main>
+    <h2>Central de suporte</h2>
+
+    <p class="intro">
+      Precisa de ajuda com o MineHost? Confira as perguntas frequentes
+      ou envie uma mensagem pela área de suporte.
+    </p>
+
+    <h2>Perguntas frequentes</h2>
+
+    <div class="faq-item">
+      <h3>Como criar um servidor?</h3>
+      <p>
+        Acesse a página de servidores pelo painel e preencha as informações
+        solicitadas para criar seu servidor de demonstração.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Posso escolher a versão do Minecraft?</h3>
+      <p>
+        Sim. A página de servidores apresenta opções de versões para
+        configurar a demonstração.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Como instalar plugins?</h3>
+      <p>
+        Acesse a página de plugins para visualizar as opções disponíveis
+        na interface demonstrativa.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>O MineHost já hospeda servidores reais?</h3>
+      <p>
+        Ainda não. Neste momento, o MineHost é um projeto de interface.
+        A hospedagem real será implementada futuramente.
+      </p>
+    </div>
+
+    <div class="form-box">
+      <h2>Enviar mensagem</h2>
+
+      <form id="supportForm">
+        <label for="name">Seu nome</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Digite seu nome"
+          required
+        >
+
+        <label for="email">Seu e-mail</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Digite seu e-mail"
+          required
+        >
+
+        <label for="message">Mensagem</label>
+        <textarea
+          id="message"
+          placeholder="Como podemos ajudar?"
+          required
+        ></textarea>
+
+        <button type="submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 MineHost - Central de suporte
+  </footer>
+
+  <script>
+    document.getElementById("supportForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      alert("Mensagem registrada apenas nesta demonstração. O envio real ainda será implementado.");
+
+      this.reset();
+    });
+  </script>
+
+</body>
+  </html>
+        
