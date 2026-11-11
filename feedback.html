@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MineHost - Feedback</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080f1d;
+    color: white;
+}
+
+header {
+    background: #101d33;
+    padding: 22px;
+    border-bottom: 1px solid #233b5e;
+}
+
+header h1 {
+    color: #3995ff;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+.intro {
+    color: #b7c5d8;
+    line-height: 1.7;
+    margin: 12px 0 25px;
+}
+
+.card {
+    background: #14243b;
+    border: 1px solid #294568;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.card h2 {
+    color: #3995ff;
+    margin-bottom: 15px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    background: #080f1d;
+    border: 1px solid #294568;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: #2585ed;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1470d0;
+}
+
+.notice {
+    background: #352a16;
+    border: 1px solid #84652a;
+    color: #ffda8a;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 18px;
+    line-height: 1.6;
+}
+
+a {
+    display: inline-block;
+    margin-top: 25px;
+    color: #3995ff;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>MineHost Feedback</h1>
+</header>
+
+<main class="container">
+
+    <h2>Deixe sua avaliação</h2>
+
+    <p class="intro">
+        Sua opinião poderá ajudar a melhorar
+        a experiência e os recursos da MineHost.
+    </p>
+
+    <section class="card">
+
+        <h2>Enviar sugestão</h2>
+
+        <form id="feedbackForm">
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Seu nome ou apelido"
+                required
+            >
+
+            <select id="rating" required>
+                <option value="">Escolha uma avaliação</option>
+                <option value="5">⭐⭐⭐⭐⭐ - Excelente</option>
+                <option value="4">⭐⭐⭐⭐ - Muito bom</option>
+                <option value="3">⭐⭐⭐ - Bom</option>
+                <option value="2">⭐⭐ - Regular</option>
+                <option value="1">⭐ - Precisa melhorar</option>
+            </select>
+
+            <textarea
+                id="message"
+                placeholder="Escreva sua sugestão..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Enviar avaliação
+            </button>
+
+        </form>
+
+        <div class="notice">
+            Este formulário é demonstrativo.
+            As avaliações ainda não são salvas nem enviadas
+            para um servidor.
+        </div>
+
+    </section>
+
+    <a href="index.html">← Voltar para o início</a>
+
+</main>
+
+<script>
+document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    alert("Obrigado pela sua avaliação! O envio real ainda será implementado.");
+
+    this.reset();
+});
+</script>
+
+</body>
+  </html>
+  
