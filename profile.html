@@ -2,196 +2,336 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Perfil - MineHost</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080e1b">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<title>Meu Perfil - MineHost</title>
 
-    body {
-      background: #0b1120;
-      color: white;
-      min-height: 100vh;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: Arial, sans-serif;
+    background: #080e1b;
+    color: white;
+    min-height: 100vh;
+}
+
+header {
+    min-height: 75px;
+    padding: 15px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    background: #101a2b;
+    border-bottom: 1px solid #26354b;
+}
+
+.logo {
+    color: #ff922e;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.back-button {
+    background: #17263a;
+    border: 1px solid #ff8c24;
+    color: #ff9b38;
+    padding: 11px 18px;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.back-button:hover {
+    background: #ff8c24;
+    color: #080e1b;
+    box-shadow: 0 0 18px #ff8c2460;
+}
+
+main {
+    width: 90%;
+    max-width: 950px;
+    margin: 40px auto;
+}
+
+.page-title {
+    margin-bottom: 25px;
+}
+
+.page-title h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.page-title p {
+    color: #91a3bb;
+}
+
+.profile-card {
+    background: linear-gradient(135deg, #142d49, #111e31);
+    border: 1px solid #29415e;
+    padding: 35px;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    background: #ff8c24;
+    color: #101a2b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    border: 4px solid #ffb76c;
+    flex-shrink: 0;
+}
+
+.profile-info h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.profile-info p {
+    color: #a6b5ca;
+    margin-bottom: 12px;
+}
+
+.account-badge {
+    display: inline-block;
+    background: #263b50;
+    color: #ffad54;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.section-title {
+    font-size: 21px;
+    margin: 30px 0 17px;
+}
+
+.info-card {
+    background: #111e31;
+    border: 1px solid #233752;
+    border-radius: 13px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.info-card h3 {
+    color: #ff9b38;
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 16px 0;
+    border-bottom: 1px solid #293a50;
+    flex-wrap: wrap;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row span:first-child {
+    color: #91a3bb;
+}
+
+.info-row span:last-child {
+    color: white;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+}
+
+.stat-card {
+    background: #111e31;
+    border: 1px solid #233752;
+    border-radius: 13px;
+    padding: 25px;
+    transition: .25s;
+}
+
+.stat-card:hover {
+    border-color: #ff8c24;
+    transform: translateY(-4px);
+}
+
+.stat-icon {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.stat-card h3 {
+    font-size: 28px;
+    color: #ff9b38;
+    margin-bottom: 8px;
+}
+
+.stat-card p {
+    color: #91a3bb;
+    font-size: 14px;
+}
+
+.notice {
+    background: #302719;
+    border: 1px solid #795322;
+    color: #ffbd70;
+    padding: 17px;
+    border-radius: 10px;
+    margin-top: 25px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+footer {
+    border-top: 1px solid #20314a;
+    text-align: center;
+    padding: 28px;
+    color: #71839b;
+    font-size: 13px;
+    margin-top: 60px;
+}
+
+@media(max-width: 600px) {
     header {
-      background: #111c32;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    header h1 {
-      color: #38bdf8;
-    }
-
-    header a {
-      background: #2563eb;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      text-decoration: none;
+        padding: 15px 5%;
     }
 
     main {
-      width: 90%;
-      max-width: 850px;
-      margin: 40px auto;
+        width: 92%;
+        margin-top: 28px;
     }
 
     .profile-card {
-      background: #172338;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      margin-bottom: 25px;
+        padding: 25px;
+        text-align: center;
+        justify-content: center;
     }
 
-    .avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: #2563eb;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 45px;
-      margin: 0 auto 15px;
-      border: 4px solid #38bdf8;
-    }
-
-    .profile-card h2 {
-      color: #38bdf8;
-      margin-bottom: 8px;
-    }
-
-    .profile-card p {
-      color: #94a3b8;
+    .profile-info {
+        width: 100%;
     }
 
     .info-card {
-      background: #172338;
-      padding: 25px;
-      border-radius: 12px;
-      margin-bottom: 15px;
+        padding: 20px;
     }
 
-    .info-card h3 {
-      color: #38bdf8;
-      margin-bottom: 15px;
+    .page-title h1 {
+        font-size: 25px;
     }
-
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 13px 0;
-      border-bottom: 1px solid #334155;
-      flex-wrap: wrap;
-    }
-
-    .info-row:last-child {
-      border-bottom: none;
-    }
-
-    .info-row span:first-child {
-      color: #94a3b8;
-    }
-
-    .info-row span:last-child {
-      color: white;
-    }
-
-    .notice {
-      background: #302b19;
-      color: #facc15;
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 20px;
-      line-height: 1.5;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #64748b;
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>MineHost</h1>
-    <a href="dashboard.html">Voltar ao painel</a>
-  </header>
+<header>
+    <div class="logo">MineHost.</div>
+    <a href="dashboard.html" class="back-button">
+        ← Voltar ao painel
+    </a>
+</header>
 
-  <main>
+<main>
+
+    <div class="page-title">
+        <h1>Meu perfil</h1>
+        <p>Gerencie e consulte as informações da sua conta.</p>
+    </div>
 
     <section class="profile-card">
-      <div class="avatar">👤</div>
-      <h2>Meu Perfil</h2>
-      <p>Bem-vindo ao seu espaço no MineHost!</p>
+
+        <div class="avatar">👤</div>
+
+        <div class="profile-info">
+            <h2>Meu Perfil</h2>
+            <p>Bem-vindo ao seu espaço MineHost!</p>
+            <span class="account-badge">Conta demonstrativa</span>
+        </div>
+
     </section>
 
+    <h2 class="section-title">Informações da conta</h2>
+
     <section class="info-card">
-      <h3>Informações da conta</h3>
 
-      <div class="info-row">
-        <span>Nome de usuário</span>
-        <span>Visitante</span>
-      </div>
+        <h3>👤 Dados pessoais</h3>
 
-      <div class="info-row">
-        <span>E-mail</span>
-        <span>Não cadastrado</span>
-      </div>
+        <div class="info-row">
+            <span>Nome de usuário</span>
+            <span>Visitante</span>
+        </div>
 
-      <div class="info-row">
-        <span>Tipo de conta</span>
-        <span>Demonstrativa</span>
-      </div>
+        <div class="info-row">
+            <span>E-mail</span>
+            <span>Não cadastrado</span>
+        </div>
 
-      <div class="info-row">
-        <span>Status</span>
-        <span>Projeto em desenvolvimento</span>
-      </div>
+        <div class="info-row">
+            <span>Tipo de conta</span>
+            <span>Demonstrativa</span>
+        </div>
+
+        <div class="info-row">
+            <span>Status</span>
+            <span>Em desenvolvimento</span>
+        </div>
+
     </section>
 
-    <section class="info-card">
-      <h3>Estatísticas</h3>
+    <h2 class="section-title">Estatísticas</h2>
 
-      <div class="info-row">
-        <span>Servidores criados</span>
-        <span>0</span>
-      </div>
+    <section class="stats">
 
-      <div class="info-row">
-        <span>Plugins instalados</span>
-        <span>0</span>
-      </div>
+        <div class="stat-card">
+            <div class="stat-icon">🖥️</div>
+            <h3>0</h3>
+            <p>Servidores criados</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🔧</div>
+            <h3>0</h3>
+            <p>Plugins instalados</p>
+        </div>
+
     </section>
 
     <div class="notice">
-      ⚠️ Esta página ainda utiliza informações demonstrativas.
-      Os dados reais da conta serão conectados futuramente.
+        ⚠️ Os dados exibidos nesta página ainda são demonstrativos.
+        A conexão com as informações reais da conta será feita
+        na próxima etapa da integração do perfil.
     </div>
 
-  </main>
+</main>
 
-  <footer>
-    © 2026 MineHost - Todos os direitos reservados.
-  </footer>
+<footer>
+    © 2026 MineHost. Todos os direitos reservados.
+</footer>
 
 </body>
-        </html>
-  
+</html>
