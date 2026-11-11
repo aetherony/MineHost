@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080e1b">
+
 <title>MineHost - Minecraft Hosting</title>
 
 <style>
@@ -14,10 +15,14 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
     background: #080e1b;
-    color: #fff;
+    color: white;
 }
 
 header {
@@ -27,36 +32,103 @@ header {
     align-items: center;
     justify-content: space-between;
     background: #101a2b;
-    border-bottom: 1px solid #1d3049;
+    border-bottom: 1px solid #26354b;
+    position: relative;
+    z-index: 100;
 }
 
 .logo {
     font-size: 27px;
     font-weight: bold;
     color: #2695ff;
+    text-decoration: none;
 }
 
-nav {
+.menu-area {
+    position: relative;
+}
+
+.menu-button {
+    width: 46px;
+    height: 46px;
+    border: 1px solid #ff8c24;
+    border-radius: 10px;
+    background: #17263a;
+    color: #ff9b38;
+    font-size: 25px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.menu-button:hover {
+    background: #ff8c24;
+    color: #080e1b;
+    box-shadow: 0 0 18px #ff8c2470;
+}
+
+.menu-button:active {
+    transform: scale(.92);
+}
+
+.menu-panel {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 250px;
+    padding: 12px;
+    background: #111e31;
+    border: 1px solid #30435e;
+    border-radius: 13px;
+    box-shadow: 0 15px 40px #0009;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: .25s ease;
+}
+
+.menu-panel.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.menu-title {
+    color: #ff9b38;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.menu-panel a {
     display: flex;
     align-items: center;
-    gap: 25px;
-}
-
-nav a {
-    color: #b8c5d8;
+    gap: 12px;
+    padding: 13px 12px;
+    color: #c1cede;
     text-decoration: none;
     font-size: 14px;
-}
-
-nav a:hover {
-    color: #2695ff;
-}
-
-.login {
-    border: 1px solid #2695ff;
-    padding: 11px 18px;
     border-radius: 8px;
-    color: white;
+    transition: .2s;
+}
+
+.menu-panel a:hover {
+    background: #24354b;
+    color: #ff9b38;
+    padding-left: 18px;
+}
+
+.menu-divider {
+    height: 1px;
+    background: #26354b;
+    margin: 8px 0;
+}
+
+.menu-panel .menu-login {
+    color: #ff9b38;
+    font-weight: bold;
 }
 
 .hero {
@@ -73,7 +145,7 @@ nav a:hover {
 
 .tag {
     background: #142c48;
-    color: #54b1ff;
+    color: #ffad54;
     padding: 9px 16px;
     border-radius: 30px;
     font-size: 12px;
@@ -88,7 +160,7 @@ nav a:hover {
 }
 
 .hero h1 span {
-    color: #299bff;
+    color: #ff922e;
 }
 
 .hero p {
@@ -100,19 +172,24 @@ nav a:hover {
 }
 
 .btn {
-    background: #168cf1;
-    color: white;
+    background: #ff8c24;
+    color: #101a2b;
     text-decoration: none;
     padding: 16px 28px;
     border-radius: 9px;
     font-weight: bold;
     display: inline-block;
-    transition: .2s;
+    transition: .25s;
 }
 
 .btn:hover {
-    background: #0872d0;
+    background: #ffad54;
+    box-shadow: 0 0 22px #ff8c2460;
     transform: translateY(-3px);
+}
+
+.btn:active {
+    transform: scale(.96);
 }
 
 .features {
@@ -142,11 +219,11 @@ nav a:hover {
     border-radius: 13px;
     padding: 30px 22px;
     text-align: left;
-    transition: .2s;
+    transition: .25s;
 }
 
 .card:hover {
-    border-color: #168cf1;
+    border-color: #ff8c24;
     transform: translateY(-5px);
 }
 
@@ -196,16 +273,8 @@ footer {
         padding: 0 5%;
     }
 
-    nav {
-        gap: 12px;
-    }
-
-    nav a {
-        font-size: 12px;
-    }
-
     .logo {
-        font-size: 22px;
+        font-size: 23px;
     }
 
     .hero {
@@ -215,6 +284,10 @@ footer {
     .features {
         padding: 55px 5%;
     }
+
+    .menu-panel {
+        width: min(250px, 85vw);
+    }
 }
 </style>
 </head>
@@ -222,14 +295,46 @@ footer {
 <body>
 
 <header>
-    <div class="logo">MineHost.</div>
 
-    <nav>
-        <a href="#inicio">Início</a>
-        <a href="#vantagens">Vantagens</a>
-        <a href="#sobre">Sobre</a>
-        <a href="login.html" class="login">Entrar</a>
-    </nav>
+    <a href="#inicio" class="logo">MineHost.</a>
+
+    <div class="menu-area">
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="menuPanel"
+            type="button">
+            ☰
+        </button>
+
+        <div class="menu-panel" id="menuPanel">
+
+            <div class="menu-title">Menu MineHost</div>
+
+            <a href="#inicio">🏠 Início</a>
+            <a href="#vantagens">✨ Vantagens</a>
+            <a href="#sobre">ℹ️ Sobre</a>
+
+            <div class="menu-divider"></div>
+
+            <a href="profile.html">👤 Meu perfil</a>
+            <a href="servers.html">🖥️ Meus servidores</a>
+            <a href="notifications.html">🔔 Notificações</a>
+            <a href="settings.html">⚙️ Configurações</a>
+            <a href="support.html">🛟 Suporte</a>
+
+            <div class="menu-divider"></div>
+
+            <a href="login.html" class="menu-login">
+                🚪 Entrar na conta
+            </a>
+
+        </div>
+    </div>
+
 </header>
 
 <section class="hero" id="inicio">
@@ -301,6 +406,47 @@ footer {
 <footer>
     © 2026 MineHost. Todos os direitos reservados.
 </footer>
+
+<script>
+const menuButton = document.getElementById("menuButton");
+const menuPanel = document.getElementById("menuPanel");
+
+function fecharMenu() {
+    menuPanel.classList.remove("open");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Abrir menu");
+}
+
+menuButton.addEventListener("click", function(event) {
+    event.stopPropagation();
+
+    const aberto = menuPanel.classList.toggle("open");
+
+    menuButton.setAttribute("aria-expanded", String(aberto));
+    menuButton.setAttribute(
+        "aria-label",
+        aberto ? "Fechar menu" : "Abrir menu"
+    );
+});
+
+menuPanel.addEventListener("click", function(event) {
+    if (event.target.closest("a")) {
+        fecharMenu();
+    }
+});
+
+document.addEventListener("click", function(event) {
+    if (!event.target.closest(".menu-area")) {
+        fecharMenu();
+    }
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        fecharMenu();
+    }
+});
+</script>
 
 </body>
 </html>
