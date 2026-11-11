@@ -1,0 +1,56 @@
+
+# MineHost
+
+Plataforma de gerenciamento e hospedagem de servidores Minecraft.
+
+## Sobre o projeto
+
+O MineHost é um projeto em desenvolvimento que pretende oferecer uma plataforma simples para criar, configurar e gerenciar servidores Minecraft.
+
+## Recursos planejados
+
+- Cadastro e login de usuários
+- Painel de controle
+- Gerenciamento de servidores
+- Suporte a Vanilla, Paper e Spigot
+- Catálogo de plugins
+- Sistema de notificações
+- Painel administrativo
+- Monitoramento de servidores
+- Sistema de backups
+
+## Tecnologias
+
+- HTML
+- CSS
+- JavaScript
+- Node.js
+- Express
+- PostgreSQL
+- Docker
+
+## Estrutura
+
+O projeto possui páginas frontend e uma estrutura inicial de backend.
+
+## Como iniciar o backend
+
+1. Instale o Node.js 20 ou superior.
+2. Instale as dependências:
+
+   npm install
+
+3. Configure suas variáveis de ambiente usando `.env.example` como modelo.
+4. Inicie o projeto:
+
+   npm run dev
+
+## Status
+
+Projeto em desenvolvimento.
+
+As funcionalidades de autenticação, banco de dados e hospedagem real ainda precisam ser implementadas e testadas.
+
+## Licença
+
+A definir.
